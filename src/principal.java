@@ -1,18 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author cesar
- */
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListDataListener;
+
+
 public class principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form principal
-     */
+    ArrayList<Raza> razas = new ArrayList();
+    DefaultComboBoxModel dc = new DefaultComboBoxModel();
+    
     public principal() {
         initComponents();
     }
@@ -26,6 +24,8 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jPanel1 = new javax.swing.JPanel();
         jtp_registro = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -37,7 +37,7 @@ public class principal extends javax.swing.JFrame {
         jtf_nombreRaza = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcb_planetaPrimordial = new javax.swing.JComboBox<>();
         js_temperatura = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         js_tamanio = new javax.swing.JSpinner();
@@ -45,11 +45,27 @@ public class principal extends javax.swing.JFrame {
         jb_registrarRaza = new javax.swing.JButton();
         jb_registrarPlaneta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jtf_nombrePlaneta1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jcb_planetaPrimordial1 = new javax.swing.JComboBox<>();
+        jcb_planetaPrimordial2 = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jb_registrarRaza1 = new javax.swing.JButton();
+        js_temperatura1 = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_listaPlanetasExplorador = new javax.swing.JList<>();
+        jb_aniadirListaExplorador = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_planetasExplorador = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+
+        jScrollPane2.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +73,11 @@ public class principal extends javax.swing.JFrame {
 
         jtp_registro.setBackground(new java.awt.Color(255, 255, 255));
         jtp_registro.setForeground(new java.awt.Color(51, 51, 51));
+        jtp_registro.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jtp_registroStateChanged(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -92,8 +113,8 @@ public class principal extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Temperatura");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
+        jcb_planetaPrimordial.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_planetaPrimordial.setForeground(new java.awt.Color(51, 51, 51));
 
         js_temperatura.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
 
@@ -111,6 +132,14 @@ public class principal extends javax.swing.JFrame {
         jb_registrarRaza.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jb_registrarRaza.setForeground(new java.awt.Color(51, 51, 51));
         jb_registrarRaza.setText("Registrar Raza");
+        jb_registrarRaza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_registrarRazaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jb_registrarRazaMouseEntered(evt);
+            }
+        });
 
         jb_registrarPlaneta.setBackground(new java.awt.Color(255, 255, 255));
         jb_registrarPlaneta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,7 +180,7 @@ public class principal extends javax.swing.JFrame {
                                 .addComponent(jtf_nombreRaza)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel7)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jcb_planetaPrimordial, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jb_registrarRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(207, 207, 207))))
         );
@@ -169,7 +198,7 @@ public class principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_nombrePlaneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcb_planetaPrimordial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -196,15 +225,126 @@ public class principal extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel10.setText("Nombre");
+
+        jtf_nombrePlaneta1.setBackground(new java.awt.Color(255, 255, 255));
+        jtf_nombrePlaneta1.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel11.setText("Edad");
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel12.setText("Nombre");
+
+        jcb_planetaPrimordial1.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_planetaPrimordial1.setForeground(new java.awt.Color(51, 51, 51));
+
+        jcb_planetaPrimordial2.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_planetaPrimordial2.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel13.setText("Nombre");
+
+        jb_registrarRaza1.setBackground(new java.awt.Color(255, 255, 255));
+        jb_registrarRaza1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jb_registrarRaza1.setForeground(new java.awt.Color(51, 51, 51));
+        jb_registrarRaza1.setText("Registrar Raza");
+        jb_registrarRaza1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_registrarRaza1MouseClicked(evt);
+            }
+        });
+
+        js_temperatura1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+
+        jl_listaPlanetasExplorador.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(jl_listaPlanetasExplorador);
+
+        jb_aniadirListaExplorador.setBackground(new java.awt.Color(255, 255, 255));
+        jb_aniadirListaExplorador.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jb_aniadirListaExplorador.setForeground(new java.awt.Color(51, 51, 51));
+        jb_aniadirListaExplorador.setText("Añadir a su Lista");
+        jb_aniadirListaExplorador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_aniadirListaExploradorMouseClicked(evt);
+            }
+        });
+
+        jl_planetasExplorador.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_planetasExplorador);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(js_temperatura1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(jtf_nombrePlaneta1)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcb_planetaPrimordial2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jcb_planetaPrimordial1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jb_registrarRaza1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(114, 114, 114))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_aniadirListaExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGap(532, 532, 532)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_nombrePlaneta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_planetaPrimordial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_planetaPrimordial2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jb_registrarRaza1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(js_temperatura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(jb_aniadirListaExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(192, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(104, 104, 104)))
         );
 
         jtp_registro.addTab("Explorador", jPanel3);
@@ -311,8 +451,91 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_registrarPlanetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarPlanetaMouseClicked
-        
+        try{            
+            boolean band = false;
+            dc = (DefaultComboBoxModel) jcb_planetaPrimordial.getModel();
+            for(int i = 0; i < dc.getSize(); i++){
+                if(((Planeta) dc.getElementAt(i)).getNombrePlaneta().equalsIgnoreCase(jtf_nombrePlaneta.getText())){
+                    band = true;
+                    break;
+                }
+            }    
+            if(jtf_nombrePlaneta.getText().equals("")){
+                band = true;
+            }
+           
+            if(band == false){
+                Planeta p = new Planeta();
+                p.setNombrePlaneta(jtf_nombrePlaneta.getText());
+                p.setHayAgua(jcb_agua.isSelected());
+                p.setTamanio((int) js_tamanio.getValue());
+                p.setTemperatura((int) js_temperatura.getValue());
+                
+                dc.addElement(p);
+                jcb_planetaPrimordial.setModel(dc);
+                JOptionPane.showMessageDialog(this, "El planeta se agregó con éxito");
+                // agregar los demás modelos
+                
+                jtf_nombrePlaneta.setText("");
+                jcb_agua.setSelected(false);
+                js_tamanio.setValue(0);
+                js_temperatura.setValue(0);
+            }else{
+                JOptionPane.showMessageDialog(this, "El planeta ya existe o no tiene nombre.");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, no se pudo agregar el planeta!");
+        }
     }//GEN-LAST:event_jb_registrarPlanetaMouseClicked
+
+    private void jb_registrarRazaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRazaMouseClicked
+        if(jcb_planetaPrimordial.getSelectedIndex() >= 0){
+            
+        }
+    }//GEN-LAST:event_jb_registrarRazaMouseClicked
+
+    private void jb_registrarRaza1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRaza1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_registrarRaza1MouseClicked
+
+    private void jb_aniadirListaExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aniadirListaExploradorMouseClicked
+       //try{
+            DefaultListModel m = (DefaultListModel) jl_listaPlanetasExplorador.getModel();
+            DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
+            boolean yaEsta = false;
+            for(int i = 0; i < m.getSize(); i++){
+                String nombrePlaneta = ((Planeta) m.getElementAt(i)).getNombrePlaneta();
+
+                if(((Planeta)j.getElementAt(i)).getNombrePlaneta().equals(nombrePlaneta)){
+                    yaEsta = true;
+                    break;
+                }
+            }
+
+            if(jl_planetasExplorador.getSelectedIndex() >= 0 && yaEsta == false){
+                m.addElement(jl_planetasExplorador.getSelectedValue());
+                JOptionPane.showMessageDialog(this, "Se agregó con éxito a la lista.");
+            }
+            
+            jl_listaPlanetasExplorador.setModel(m);
+            
+        //}catch(Exception e){
+          //  JOptionPane.showMessageDialog(this, "Error, no se pudo agregar a la lista.");
+        //}        
+    }//GEN-LAST:event_jb_aniadirListaExploradorMouseClicked
+
+    private void jtp_registroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jtp_registroStateChanged
+        // jcb_planetaPrimordial.setModel(dc);
+        // jl_planetasExplorador.setModel(dc);
+        DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
+        for (int i = 0; i < dc.getSize(); i++) {
+            j.addElement(dc.getElementAt(i));
+        }
+    }//GEN-LAST:event_jtp_registroStateChanged
+
+    private void jb_registrarRazaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRazaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_registrarRazaMouseEntered
 
     /**
      * @param args the command line arguments
@@ -350,8 +573,11 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -366,12 +592,25 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTree jTree1;
+    private javax.swing.JButton jb_aniadirListaExplorador;
     private javax.swing.JButton jb_registrarPlaneta;
     private javax.swing.JButton jb_registrarRaza;
+    private javax.swing.JButton jb_registrarRaza1;
     private javax.swing.JCheckBox jcb_agua;
+    private javax.swing.JComboBox<String> jcb_planetaPrimordial;
+    private javax.swing.JComboBox<String> jcb_planetaPrimordial1;
+    private javax.swing.JComboBox<String> jcb_planetaPrimordial2;
+    private javax.swing.JList<String> jl_listaPlanetasExplorador;
+    private javax.swing.JList<String> jl_planetasExplorador;
     private javax.swing.JSpinner js_tamanio;
     private javax.swing.JSpinner js_temperatura;
+    private javax.swing.JSpinner js_temperatura1;
     private javax.swing.JTextField jtf_nombrePlaneta;
+    private javax.swing.JTextField jtf_nombrePlaneta1;
     private javax.swing.JTextField jtf_nombreRaza;
     private javax.swing.JTabbedPane jtp_registro;
     // End of variables declaration//GEN-END:variables

@@ -58,6 +58,11 @@ class Planeta {
     public void setAlienigenasHabitantes(ArrayList<Alienigena> alienigenasHabitantes) {
         this.alienigenasHabitantes = alienigenasHabitantes;
     }
+
+    @Override
+    public String toString() {
+        return nombrePlaneta;
+    }
     
     
     
