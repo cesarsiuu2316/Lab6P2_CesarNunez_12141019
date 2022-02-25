@@ -24,8 +24,6 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         jPanel1 = new javax.swing.JPanel();
         jtp_registro = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -63,9 +61,13 @@ public class principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jcb_planetaArbol = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jLabel3 = new javax.swing.JLabel();
-
-        jScrollPane2.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -238,7 +240,7 @@ public class principal extends javax.swing.JFrame {
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel12.setText("Nombre");
+        jLabel12.setText("Raza");
 
         jcb_planetaPrimordial1.setBackground(new java.awt.Color(255, 255, 255));
         jcb_planetaPrimordial1.setForeground(new java.awt.Color(51, 51, 51));
@@ -248,7 +250,7 @@ public class principal extends javax.swing.JFrame {
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel13.setText("Nombre");
+        jLabel13.setText("Planeta Favorito");
 
         jb_registrarRaza1.setBackground(new java.awt.Color(255, 255, 255));
         jb_registrarRaza1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -396,15 +398,48 @@ public class principal extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
+        jcb_planetaArbol.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_planetaArbol.setForeground(new java.awt.Color(51, 51, 51));
+
+        jList1.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jList1);
+
+        jButton1.setText(">");
+
+        jScrollPane4.setViewportView(jTree1);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcb_planetaArbol, 0, 167, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jcb_planetaArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jScrollPane2)))))
+                .addContainerGap())
         );
 
         jtp_registro.addTab("Arbol", jPanel7);
@@ -499,38 +534,31 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_registrarRaza1MouseClicked
 
     private void jb_aniadirListaExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aniadirListaExploradorMouseClicked
-       //try{
-            DefaultListModel m = (DefaultListModel) jl_listaPlanetasExplorador.getModel();
-            DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
-            boolean yaEsta = false;
-            for(int i = 0; i < m.getSize(); i++){
-                String nombrePlaneta = ((Planeta) m.getElementAt(i)).getNombrePlaneta();
-
-                if(((Planeta)j.getElementAt(i)).getNombrePlaneta().equals(nombrePlaneta)){
-                    yaEsta = true;
-                    break;
-                }
+       
+        DefaultListModel m = (DefaultListModel) jl_listaPlanetasExplorador.getModel();
+        DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
+        boolean existe = false;
+        Planeta p = new Planeta();
+        for (int i = 0; i < m.getSize(); i++) {
+            p = (Planeta)j.getElementAt(jl_planetasExplorador.getSelectedIndex());
+            if( (Planeta)m.getElementAt(i) == p){
+                existe = true;
             }
-
-            if(jl_planetasExplorador.getSelectedIndex() >= 0 && yaEsta == false){
-                m.addElement(jl_planetasExplorador.getSelectedValue());
-                JOptionPane.showMessageDialog(this, "Se agregó con éxito a la lista.");
-            }
-            
-            jl_listaPlanetasExplorador.setModel(m);
-            
-        //}catch(Exception e){
-          //  JOptionPane.showMessageDialog(this, "Error, no se pudo agregar a la lista.");
-        //}        
+        }
+        if(!existe)
+            m.addElement(p);
     }//GEN-LAST:event_jb_aniadirListaExploradorMouseClicked
 
     private void jtp_registroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jtp_registroStateChanged
-        // jcb_planetaPrimordial.setModel(dc);
-        // jl_planetasExplorador.setModel(dc);
-        DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
-        for (int i = 0; i < dc.getSize(); i++) {
-            j.addElement(dc.getElementAt(i));
-        }
+        
+        try{
+            DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
+            for (int i = 0; i < dc.getSize(); i++) {
+                j.addElement(dc.getElementAt(i));
+            }   
+        }catch(Exception e){
+            
+        }       
     }//GEN-LAST:event_jtp_registroStateChanged
 
     private void jb_registrarRazaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRazaMouseEntered
@@ -573,6 +601,7 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -585,6 +614,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -595,12 +625,14 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTree jTree1;
     private javax.swing.JButton jb_aniadirListaExplorador;
     private javax.swing.JButton jb_registrarPlaneta;
     private javax.swing.JButton jb_registrarRaza;
     private javax.swing.JButton jb_registrarRaza1;
     private javax.swing.JCheckBox jcb_agua;
+    private javax.swing.JComboBox<String> jcb_planetaArbol;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial1;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial2;
