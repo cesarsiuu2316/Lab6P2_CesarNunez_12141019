@@ -29,6 +29,12 @@ class Raza{
     public void setNombreRaza(String nombreRaza) {
         this.nombreRaza = nombreRaza;
     }
+
+    @Override
+    public String toString() {
+        return nombreRaza;
+    }
+    
     
     
 }

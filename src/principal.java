@@ -3,11 +3,12 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 
 public class principal extends javax.swing.JFrame {
 
-    ArrayList<Raza> razas = new ArrayList();
     DefaultComboBoxModel dc = new DefaultComboBoxModel();
     
     public principal() {
@@ -89,9 +90,9 @@ public class principal extends javax.swing.JFrame {
         jcb_arbol = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jl_arbol = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        jb_arbol = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_arbol = new javax.swing.JTree();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -434,11 +435,16 @@ public class principal extends javax.swing.JFrame {
         jl_arbol.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jl_arbol);
 
-        jButton1.setText(">");
+        jb_arbol.setText(">");
+        jb_arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_arbolMouseClicked(evt);
+            }
+        });
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane4.setViewportView(jTree1);
+        jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane4.setViewportView(jt_arbol);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -450,7 +456,7 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jcb_arbol, 0, 167, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jb_arbol, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(381, Short.MAX_VALUE))
@@ -466,7 +472,7 @@ public class principal extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(148, 148, 148)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jb_arbol, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -541,23 +547,50 @@ public class principal extends javax.swing.JFrame {
                 dc.addElement(p);
                 jcb_planetaPrimordial.setModel(dc);
                 JOptionPane.showMessageDialog(this, "El planeta se agregó con éxito");
-                // agregar los demás modelos
                 
-                jtf_nombrePlaneta.setText("");
-                jcb_agua.setSelected(false);
-                js_tamanio.setValue(0);
-                js_temperatura.setValue(0);
             }else{
                 JOptionPane.showMessageDialog(this, "El planeta ya existe o no tiene nombre.");
             }
+            
+            jtf_nombrePlaneta.setText("");
+            jcb_agua.setSelected(false);
+            js_tamanio.setValue(0);
+            js_temperatura.setValue(0);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error, no se pudo agregar el planeta!");
         }
     }//GEN-LAST:event_jb_registrarPlanetaMouseClicked
 
     private void jb_registrarRazaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRazaMouseClicked
-        if(jcb_planetaPrimordial.getSelectedIndex() >= 0){
+        try{            
+            boolean band = false;
+            DefaultComboBoxModel x = (DefaultComboBoxModel) jcb_razaExp.getModel();
+            for(int i = 0; i < x.getSize(); i++){
+                Raza r = (Raza) x.getElementAt(i);
+                if(r.getNombreRaza().equalsIgnoreCase(jtf_nombreRaza.getText())){
+                    band = true;
+                    break;
+                }
+            }    
+            if(jtf_nombreRaza.getText().equals("")){
+                band = true;
+            }
+           
+            if(band == false){                
+                if(jcb_planetaPrimordial.getSelectedIndex() >= 0){            
+                    x.addElement(new Raza( (Planeta) jcb_planetaPrimordial.getSelectedItem(), jtf_nombreRaza.getText()));
+                }
+                jcb_razaExp.setModel(x);
+                JOptionPane.showMessageDialog(this, "Se agregó la raza correctamente.");
+
+            }else{
+                JOptionPane.showMessageDialog(this, "La raza ya existe o no tiene nombre.");
+            }            
             
+            jcb_planetaPrimordial.setSelectedIndex(0);
+            jtf_nombreRaza.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, no se pudo agregar la raza!");
         }
     }//GEN-LAST:event_jb_registrarRazaMouseClicked
 
@@ -566,7 +599,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_registrarRaza1MouseClicked
 
     private void jb_aniadirListaExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aniadirListaExploradorMouseClicked
-       
+        
         DefaultListModel m = (DefaultListModel) jl_listaPlanetasExplorador.getModel();
         DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
         boolean existe = false;
@@ -613,9 +646,35 @@ public class principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcb_arbolItemStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jb_arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_arbolMouseClicked
+        if(jl_arbol.getSelectedIndex() >= 0){
+            DefaultTreeModel t = (DefaultTreeModel) jt_arbol.getModel();
+            DefaultMutableTreeNode root = (DefaultMutableTreeNode) t.getRoot();
+            DefaultMutableTreeNode nodoAlien = new DefaultMutableTreeNode();
+            DefaultMutableTreeNode nodoPlaneta = new DefaultMutableTreeNode();
+            DefaultListModel j = (DefaultListModel) jl_arbol.getModel();
+            Alienigena a = (Alienigena) j.getElementAt(jl_arbol.getSelectedIndex());
+            
+            ArrayList<Planeta> modelo = new ArrayList();
+            for (int i = 0; i < dc.getSize(); i++) {
+                    modelo.add((Planeta)dc.getElementAt(i));
+            }
+            
+            for (Planeta p : modelo) {
+                for (Alienigena al : p.getAlienigenasHabitantes()) {
+                    if(al == a){
+                        nodoPlaneta = new DefaultMutableTreeNode(p);
+                        nodoAlien = new DefaultMutableTreeNode(a);
+                    }
+                }
+            }            
+            nodoPlaneta.add(nodoAlien);
+            root.add(nodoPlaneta);
+            t.reload();
+        }
+    }//GEN-LAST:event_jb_arbolMouseClicked
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -649,7 +708,6 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -673,8 +731,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTree jTree1;
     private javax.swing.JButton jb_aniadirListaExplorador;
+    private javax.swing.JButton jb_arbol;
     private javax.swing.JButton jb_registrarPlaneta;
     private javax.swing.JButton jb_registrarRaza;
     private javax.swing.JButton jb_registrarRaza1;
@@ -689,6 +747,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JSpinner js_tamanio;
     private javax.swing.JSpinner js_temperatura;
     private javax.swing.JSpinner js_temperatura1;
+    private javax.swing.JTree jt_arbol;
     private javax.swing.JTextField jtf_nombrePlaneta;
     private javax.swing.JTextField jtf_nombrePlaneta1;
     private javax.swing.JTextField jtf_nombreRaza;
