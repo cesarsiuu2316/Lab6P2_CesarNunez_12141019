@@ -80,7 +80,7 @@ public class principal extends javax.swing.JFrame {
         jcb_planetaPrimordial1 = new javax.swing.JComboBox<>();
         jcb_razaExp = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        jb_registrarRaza1 = new javax.swing.JButton();
+        jb_guardar = new javax.swing.JButton();
         js_temperatura1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_listaPlanetasExplorador = new javax.swing.JList<>();
@@ -293,13 +293,13 @@ public class principal extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("Planeta Favorito");
 
-        jb_registrarRaza1.setBackground(new java.awt.Color(255, 255, 255));
-        jb_registrarRaza1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jb_registrarRaza1.setForeground(new java.awt.Color(51, 51, 51));
-        jb_registrarRaza1.setText("Registrar Raza");
-        jb_registrarRaza1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_guardar.setBackground(new java.awt.Color(255, 255, 255));
+        jb_guardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jb_guardar.setForeground(new java.awt.Color(51, 51, 51));
+        jb_guardar.setText("Guardar");
+        jb_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_registrarRaza1MouseClicked(evt);
+                jb_guardarMouseClicked(evt);
             }
         });
 
@@ -342,7 +342,7 @@ public class principal extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jcb_planetaPrimordial1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_registrarRaza1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jb_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(114, 114, 114))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -372,7 +372,7 @@ public class principal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jb_registrarRaza1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jb_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -448,6 +448,11 @@ public class principal extends javax.swing.JFrame {
         });
 
         jl_arbol.setModel(new DefaultListModel());
+        jl_arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_arbolMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jl_arbol);
 
         jb_arbol.setText(">");
@@ -609,9 +614,9 @@ public class principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_registrarRazaMouseClicked
 
-    private void jb_registrarRaza1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRaza1MouseClicked
+    private void jb_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jb_registrarRaza1MouseClicked
+    }//GEN-LAST:event_jb_guardarMouseClicked
 
     private void jb_aniadirListaExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aniadirListaExploradorMouseClicked
         
@@ -641,7 +646,7 @@ public class principal extends javax.swing.JFrame {
                 j.addElement(modelo.get(i));                
             } 
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(this, "Ocurrió un error");
         }       
     }//GEN-LAST:event_jtp_registroStateChanged
 
@@ -702,6 +707,12 @@ public class principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_arbolMouseClicked
 
+    private void jl_arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_arbolMouseClicked
+        if(jl_arbol.getSelectedIndex() >= 0){
+                        
+        }
+    }//GEN-LAST:event_jl_arbolMouseClicked
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -761,9 +772,9 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_aniadirListaExplorador;
     private javax.swing.JButton jb_arbol;
+    private javax.swing.JButton jb_guardar;
     private javax.swing.JButton jb_registrarPlaneta;
     private javax.swing.JButton jb_registrarRaza;
-    private javax.swing.JButton jb_registrarRaza1;
     private javax.swing.JCheckBox jcb_agua;
     private javax.swing.JComboBox<String> jcb_arbol;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial;
