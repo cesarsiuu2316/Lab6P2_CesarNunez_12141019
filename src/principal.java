@@ -25,10 +25,10 @@ public class principal extends javax.swing.JFrame {
         p2.setNombrePlaneta("Marte");
         ArrayList<Alienigena> aliens1 = new ArrayList();
         ArrayList<Alienigena> aliens2 = new ArrayList();
-        Alienigena a1 = new Alienigena("Juan");
-        Alienigena a2 = new Alienigena("Susana");
-        Alienigena a3 = new Alienigena("Pedro");
-        Alienigena a4 = new Alienigena("Pepe");
+        Alienigena a1 = new Explorador("Juan");
+        Alienigena a2 = new Cazador("Susana");
+        Alienigena a3 = new Cazador("Pedro");
+        Alienigena a4 = new Conquistador("Pepe");
         aliens1.add(a1);
         aliens1.add(a2);
         aliens2.add(a3);
@@ -652,23 +652,36 @@ public class principal extends javax.swing.JFrame {
             DefaultMutableTreeNode root = (DefaultMutableTreeNode) t.getRoot();
             DefaultMutableTreeNode nodoAlien = new DefaultMutableTreeNode();
             DefaultMutableTreeNode nodoPlaneta = new DefaultMutableTreeNode();
+            DefaultMutableTreeNode nodoTipo = new DefaultMutableTreeNode();
             DefaultListModel j = (DefaultListModel) jl_arbol.getModel();
             Alienigena a = (Alienigena) j.getElementAt(jl_arbol.getSelectedIndex());
             
             ArrayList<Planeta> modelo = new ArrayList();
             for (int i = 0; i < dc.getSize(); i++) {
-                    modelo.add((Planeta)dc.getElementAt(i));
+                modelo.add((Planeta)dc.getElementAt(i));
             }
             
             for (Planeta p : modelo) {
                 for (Alienigena al : p.getAlienigenasHabitantes()) {
-                    if(al == a){
+                    if(al == a){                        
                         nodoPlaneta = new DefaultMutableTreeNode(p);
                         nodoAlien = new DefaultMutableTreeNode(a);
                     }
+                    
+                    if(al instanceof Explorador){
+                        nodoTipo = new DefaultMutableTreeNode("Explorador");
+                    }else if(al instanceof Conquistador){
+                        nodoTipo = new DefaultMutableTreeNode("Conquistador");
+                    }else if(al instanceof Cazador){
+                        nodoTipo = new DefaultMutableTreeNode("Cazador");
+                    }else if(al instanceof Abduzcan){
+                        nodoTipo = new DefaultMutableTreeNode("Abduzcan");
+                    }
                 }
-            }            
-            nodoPlaneta.add(nodoAlien);
+            }    
+           
+            nodoTipo.add(nodoAlien);
+            nodoPlaneta.add(nodoTipo);
             root.add(nodoPlaneta);
             t.reload();
         }

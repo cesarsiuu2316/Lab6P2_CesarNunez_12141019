@@ -11,6 +11,10 @@ public class Abduzcan extends Alienigena {
         super(nombre, raza, edad, esAmenaza);
         this.nAnimalesAbducidos = nAnimalesAbducidos;
     }
+    
+    public Abduzcan(String nombre){
+        super(nombre);
+    }
 
     public int getnAnimalesAbducidos() {
         return nAnimalesAbducidos;
@@ -21,5 +25,9 @@ public class Abduzcan extends Alienigena {
     }
    
    
+    @Override
+    public String toString() {
+        return "Abduzcan";
+    }
     
 }

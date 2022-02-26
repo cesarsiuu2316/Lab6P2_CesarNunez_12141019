@@ -15,6 +15,10 @@ public class Explorador extends Alienigena{
         super(nombre, raza, edad, esAmenaza);
         this.planetaFavorito = planetaFavorito;
     }
+    
+    public Explorador(String nombre){
+        super(nombre);
+    }
 
     public ArrayList<Planeta> getPlanetasExplorados() {
         return planetasExplorados;
@@ -31,6 +35,8 @@ public class Explorador extends Alienigena{
     public void setPlanetaFavorito(Planeta planetaFavorito) {
         this.planetaFavorito = planetaFavorito;
     }
+
+
     
     
     

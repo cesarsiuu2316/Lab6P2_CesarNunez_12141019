@@ -11,6 +11,10 @@ public class Cazador extends Alienigena {
         super(nombre, raza, edad, esAmenaza);
         this.nHumanosAtrapados = nHumanosAtrapados;
     }
+    
+    public Cazador(String nombre){
+        super(nombre);
+    }
 
     public int getnHumanosAtrapados() {
         return nHumanosAtrapados;
@@ -21,5 +25,9 @@ public class Cazador extends Alienigena {
     }
     
     
+    @Override
+    public String toString() {
+        return "Cazador";
+    }
     
 }
