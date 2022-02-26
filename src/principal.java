@@ -50,6 +50,10 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu1 = new java.awt.PopupMenu();
+        mi_editar = new java.awt.MenuItem();
+        mi_eliminar = new java.awt.MenuItem();
+        mi_imprimir = new java.awt.MenuItem();
         jPanel1 = new javax.swing.JPanel();
         jtp_registro = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -94,6 +98,17 @@ public class principal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jt_arbol = new javax.swing.JTree();
         jLabel3 = new javax.swing.JLabel();
+
+        popupMenu1.setLabel("popupMenu1");
+
+        mi_editar.setLabel("menuItem1");
+        popupMenu1.add(mi_editar);
+
+        mi_eliminar.setLabel("menuItem1");
+        popupMenu1.add(mi_eliminar);
+
+        mi_imprimir.setLabel("menuItem1");
+        popupMenu1.add(mi_imprimir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -765,5 +780,9 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_nombrePlaneta1;
     private javax.swing.JTextField jtf_nombreRaza;
     private javax.swing.JTabbedPane jtp_registro;
+    private java.awt.MenuItem mi_editar;
+    private java.awt.MenuItem mi_eliminar;
+    private java.awt.MenuItem mi_imprimir;
+    private java.awt.PopupMenu popupMenu1;
     // End of variables declaration//GEN-END:variables
 }

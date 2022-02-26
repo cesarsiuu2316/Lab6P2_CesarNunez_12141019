@@ -36,7 +36,9 @@ public class Explorador extends Alienigena{
         this.planetaFavorito = planetaFavorito;
     }
 
-
+    public String _toString() {
+        return "Explorador";
+    }
     
     
     
