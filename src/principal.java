@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListDataListener;
 
 
 public class principal extends javax.swing.JFrame {
@@ -12,7 +11,33 @@ public class principal extends javax.swing.JFrame {
     DefaultComboBoxModel dc = new DefaultComboBoxModel();
     
     public principal() {
+        
         initComponents();
+        defaultAliens();
+    }
+    
+    private void defaultAliens(){
+        DefaultComboBoxModel x = (DefaultComboBoxModel) jcb_planetaPrimordial.getModel();
+        Planeta p = new Planeta();
+        Planeta p2 = new Planeta();
+        p.setNombrePlaneta("Jupiter");
+        p2.setNombrePlaneta("Marte");
+        ArrayList<Alienigena> aliens1 = new ArrayList();
+        ArrayList<Alienigena> aliens2 = new ArrayList();
+        Alienigena a1 = new Alienigena("Juan");
+        Alienigena a2 = new Alienigena("Susana");
+        Alienigena a3 = new Alienigena("Pedro");
+        Alienigena a4 = new Alienigena("Pepe");
+        aliens1.add(a1);
+        aliens1.add(a2);
+        aliens2.add(a3);
+        aliens2.add(a4);
+        p.setAlienigenasHabitantes(aliens1);
+        p2.setAlienigenasHabitantes(aliens2);
+        x.addElement(p);
+        x.addElement(p2);
+        jcb_planetaPrimordial.setModel(x);
+        dc = (DefaultComboBoxModel) jcb_planetaPrimordial.getModel();
     }
 
     /**
@@ -48,7 +73,7 @@ public class principal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jcb_planetaPrimordial1 = new javax.swing.JComboBox<>();
-        jcb_planetaPrimordial2 = new javax.swing.JComboBox<>();
+        jcb_razaExp = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jb_registrarRaza1 = new javax.swing.JButton();
         js_temperatura1 = new javax.swing.JSpinner();
@@ -61,9 +86,9 @@ public class principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jcb_planetaArbol = new javax.swing.JComboBox<>();
+        jcb_arbol = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jl_arbol = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -245,8 +270,8 @@ public class principal extends javax.swing.JFrame {
         jcb_planetaPrimordial1.setBackground(new java.awt.Color(255, 255, 255));
         jcb_planetaPrimordial1.setForeground(new java.awt.Color(51, 51, 51));
 
-        jcb_planetaPrimordial2.setBackground(new java.awt.Color(255, 255, 255));
-        jcb_planetaPrimordial2.setForeground(new java.awt.Color(51, 51, 51));
+        jcb_razaExp.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_razaExp.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
@@ -295,7 +320,7 @@ public class principal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcb_planetaPrimordial2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcb_razaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +352,7 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_nombrePlaneta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcb_planetaPrimordial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcb_planetaPrimordial2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcb_razaExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -398,14 +423,21 @@ public class principal extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jcb_planetaArbol.setBackground(new java.awt.Color(255, 255, 255));
-        jcb_planetaArbol.setForeground(new java.awt.Color(51, 51, 51));
+        jcb_arbol.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_arbol.setForeground(new java.awt.Color(51, 51, 51));
+        jcb_arbol.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcb_arbolItemStateChanged(evt);
+            }
+        });
 
-        jList1.setModel(new DefaultListModel());
-        jScrollPane2.setViewportView(jList1);
+        jl_arbol.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jl_arbol);
 
         jButton1.setText(">");
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane4.setViewportView(jTree1);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -415,7 +447,7 @@ public class principal extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jcb_planetaArbol, 0, 167, Short.MAX_VALUE)
+                    .addComponent(jcb_arbol, 0, 167, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +462,7 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jcb_planetaArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcb_arbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(148, 148, 148)
@@ -550,12 +582,16 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_aniadirListaExploradorMouseClicked
 
     private void jtp_registroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jtp_registroStateChanged
-        
+        ArrayList<Object> modelo = new ArrayList();
+        for (int i = 0; i < dc.getSize(); i++) {
+                modelo.add(dc.getElementAt(i));
+            }           
         try{
             DefaultListModel j = (DefaultListModel) jl_planetasExplorador.getModel();
+            jcb_arbol.setModel(dc);            
             for (int i = 0; i < dc.getSize(); i++) {
-                j.addElement(dc.getElementAt(i));
-            }   
+                j.addElement(modelo.get(i));                
+            } 
         }catch(Exception e){
             
         }       
@@ -564,6 +600,18 @@ public class principal extends javax.swing.JFrame {
     private void jb_registrarRazaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_registrarRazaMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jb_registrarRazaMouseEntered
+
+    private void jcb_arbolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcb_arbolItemStateChanged
+        jl_arbol.setModel(new DefaultListModel());
+        if(jcb_arbol.getSelectedIndex() >= 0){
+            Planeta p = (Planeta) jcb_arbol.getSelectedItem();
+            DefaultListModel j = (DefaultListModel) jl_arbol.getModel();
+            for (Alienigena a : p.getAlienigenasHabitantes()) {
+                j.addElement(a);
+            }
+            jl_arbol.setModel(j);
+        }
+    }//GEN-LAST:event_jcb_arbolItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -614,7 +662,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -632,10 +679,11 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_registrarRaza;
     private javax.swing.JButton jb_registrarRaza1;
     private javax.swing.JCheckBox jcb_agua;
-    private javax.swing.JComboBox<String> jcb_planetaArbol;
+    private javax.swing.JComboBox<String> jcb_arbol;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial;
     private javax.swing.JComboBox<String> jcb_planetaPrimordial1;
-    private javax.swing.JComboBox<String> jcb_planetaPrimordial2;
+    private javax.swing.JComboBox<String> jcb_razaExp;
+    private javax.swing.JList<String> jl_arbol;
     private javax.swing.JList<String> jl_listaPlanetasExplorador;
     private javax.swing.JList<String> jl_planetasExplorador;
     private javax.swing.JSpinner js_tamanio;

@@ -18,6 +18,10 @@ public class Alienigena {
         this.edad = edad;
         this.esAmenaza = esAmenaza;
     }
+    
+    public Alienigena(String nombre){
+        this.nombre = nombre;
+    }
 
     public String getNombre() {
         return nombre;
@@ -53,7 +57,7 @@ public class Alienigena {
 
     @Override
     public String toString() {
-        return "nombre=" + nombre + ", raza=" + raza + ", edad=" + edad + ", esAmenaza=" + esAmenaza;
+        return nombre;
     }
     
     
